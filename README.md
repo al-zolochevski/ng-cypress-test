@@ -1,5 +1,5 @@
-### ng-cypress-test
-My pet-project based on materials that were distributed within the course "Cypress: Web Automation Testing from Zero to Hero"
+## ng-cypress-test
+#### My pet-project based on materials that were distributed within the course "Cypress: Web Automation Testing from Zero to Hero"
 
 
 
