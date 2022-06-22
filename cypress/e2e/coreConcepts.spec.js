@@ -31,7 +31,7 @@ describe('My first suite', () => {
     })
   })
 
-  it('Understand the concept of .invoke', function () {
+  it('Understand the concept of .invoke', () => {
     cy.visit('/');
     cy.contains('Forms').click();
     cy.contains('Form Layouts').click();
@@ -62,7 +62,7 @@ describe('My first suite', () => {
     })
   });
 
-  it('Check that "Check me out" checkbox is checked using invoke + .then ', function () {
+  it('Check that "Check me out" checkbox is checked using invoke + .then ', () => {
     cy.visit('/');
     cy.contains('Forms').click();
     cy.contains('Form Layouts').click();
@@ -73,7 +73,7 @@ describe('My first suite', () => {
     })
   });
 
-  it('Check that date selected from datepicker is displayed in date input', function () {
+  it('Check that date selected from datepicker is displayed in date input', () => {
     cy.visit('/');
     cy.contains('Forms').click();
     cy.contains('Datepicker').click();
@@ -87,7 +87,7 @@ describe('My first suite', () => {
     })
   });
 
-  it('Check radio buttons: checked, unchecked, disabled', function () {
+  it('Check radio buttons: checked, unchecked, disabled', () => {
     cy.visit('/');
     cy.contains('Forms').click();
     cy.contains('Form Layouts').click();
@@ -101,7 +101,7 @@ describe('My first suite', () => {
     })
   });
 
-  it('Checkboxes', function () {
+  it('Checkboxes', () => {
     cy.visit('/');
     cy.contains('Modal & Overlays').click();
     cy.contains('Toastr').click();
@@ -111,5 +111,42 @@ describe('My first suite', () => {
     // And to "uncheck" the element we should use click() method
     cy.get('[type="checkbox"]').eq(0).click({force: true}).should('not.be.checked');
     cy.get('[type="checkbox"]').eq(1).check({force: true}).should('be.checked');
+  });
+
+  it('Dropdown and Lists', () => {
+    cy.visit('/');
+
+    //1. The First example works only for "Dark" theme mode
+    // cy.get('nav nb-select').click();
+    // cy.get('.options-list').contains('Dark').click();
+    // cy.get('nb-layout-header nav').should('have.css', 'background-color', 'rgb(34, 43, 69)');
+
+    //2. The Second example works for all fourth theme modes
+    // And Cypress has special method select() to work with dropdowns list, but we have another tag name in project (nb-select)
+    // And we get the "nav nb-select" and save as parameter using .then
+    // And here we created a loop using each() method
+
+    cy.get('nav nb-select').then(dropdown => {
+
+      cy.wrap(dropdown).click();
+
+      cy.get('.options-list nb-option').each((listElement, index) => {
+        const itemText = listElement.text().trim()
+
+        const colors = {
+          "Light": "rgb(255, 255, 255)",
+          "Dark": "rgb(34, 43, 69)",
+          "Cosmic": "rgb(50, 50, 89)",
+          "Corporate": "rgb(255, 255, 255)"
+        }
+
+        cy.wrap(listElement).click();
+        cy.wrap(dropdown).should('contain', itemText)
+        cy.get('nb-layout-header nav').should('have.css', 'background-color', colors[itemText])
+        if (index < 3) {
+          cy.wrap(dropdown).click();
+        }
+      })
+    })
   });
 });
