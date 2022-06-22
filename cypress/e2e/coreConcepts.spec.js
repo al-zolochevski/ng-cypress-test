@@ -86,4 +86,30 @@ describe('My first suite', () => {
       cy.wrap(input).invoke('prop', 'value').should('contain', 'Jun 21, 2022')
     })
   });
+
+  it('Check radio buttons: checked, unchecked, disabled', function () {
+    cy.visit('/');
+    cy.contains('Forms').click();
+    cy.contains('Form Layouts').click();
+
+    //And Use the special command check() not click()
+    //And it's a prover way to check radio-buttons abd checkboxes
+    cy.contains('nb-card', 'Using the Grid').find('[type="radio"]').then(radioButtons => {
+      cy.wrap(radioButtons).first().check({force: true}).should('be.checked');
+      cy.wrap(radioButtons).eq(1).check({force: true}).should('be.checked');
+      cy.wrap(radioButtons).first().should('not.be.checked');
+    })
+  });
+
+  it('Checkboxes', function () {
+    cy.visit('/');
+    cy.contains('Modal & Overlays').click();
+    cy.contains('Toastr').click();
+
+    //And check() method is work only for "check" event not for "uncheck"
+    // Zero index checkbox is checked by default
+    // And to "uncheck" the element we should use click() method
+    cy.get('[type="checkbox"]').eq(0).click({force: true}).should('not.be.checked');
+    cy.get('[type="checkbox"]').eq(1).check({force: true}).should('be.checked');
+  });
 });
