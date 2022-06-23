@@ -149,4 +149,44 @@ describe('My first suite', () => {
       })
     })
   });
+
+  it('Web Tables', () => {
+    cy.visit('/');
+    cy.contains('Tables & Data').click();
+    cy.contains('Smart Table').click();
+
+    //Change the Larry's age to 25
+    // And use the Table DOM
+    cy.get('tbody').contains('tr', 'Larry').then(tableRow => {
+      cy.wrap(tableRow).find('i.nb-edit').click();
+      cy.wrap(tableRow).find('[placeholder="Age"]').clear().type('25');
+      cy.wrap(tableRow).find('.nb-checkmark').click();
+      cy.wrap(tableRow).find('td').eq(6).should('contain', '25');
+    })
+
+    cy.get('tr').find('a .nb-plus').click();
+    //
+    cy.get('thead').find('tr').eq(2).then(theadRow => {
+      cy.wrap(theadRow).find('input-editor').eq(1).type('Aleksei');
+      cy.wrap(theadRow).find('input-editor').eq(2).type('Zolochevskyi');
+      cy.wrap(theadRow).find('.nb-checkmark').click();
+    });
+
+    cy.get('tbody').find('tr').eq(0).then(firstRow => {
+      cy.wrap(firstRow).find('td').eq(2).should('have.text', 'Aleksei')
+      cy.wrap(firstRow).find('td').eq(3).should('have.text', 'Zolochevskyi')
+    })
+    const age = [20, 30, 40, 200]
+    cy.wrap(age).each(age => {
+      cy.get('thead').find('[placeholder="Age"]').clear().type(age);
+      cy.wait(500)
+      cy.get('tbody tr').each(tableRow => {
+        if (age === 200) {
+          cy.wrap(tableRow).find('td').should('contain', 'No data found')
+        } else {
+          cy.wrap(tableRow).find('td').eq(6).should('contain', age)
+        }
+      })
+    })
+  })
 });
