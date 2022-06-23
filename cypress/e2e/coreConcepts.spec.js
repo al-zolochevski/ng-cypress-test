@@ -31,13 +31,16 @@ describe('My first suite', () => {
     })
   });
 
-  it('Understand the concept of .invoke', () => {
+  it.only('Understand the concept of .invoke', () => {
     cy.visit('/');
     cy.contains('Forms').click();
     cy.contains('Form Layouts').click();
 
     // 1. Assertion with Cypress style for Basic Form - email label text
-    cy.get('[for="exampleInputEmail1"]').should('have.text', 'Email address');
+    cy.get('[for="exampleInputEmail1"]')
+      .should('have.text', 'Email address')
+      .should('have.class', 'label')
+      .and('have.text', 'Email address');
 
     // 2. Assertion with .then style for Basic Form - email label text
     // And we get element and saved it as an jQuery object in label
@@ -46,6 +49,8 @@ describe('My first suite', () => {
     cy.get('[for="exampleInputEmail1"]').then(label => {
       const emailLabelText = label.text();
       expect(emailLabelText).equal('Email address');
+      expect(label).to.have.class('label');
+      expect(label).to.have.text('Email address');
     })
 
     // 3. Assertion with .invoke + .then command for Basic Form - email label text
