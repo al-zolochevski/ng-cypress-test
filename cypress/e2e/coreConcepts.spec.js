@@ -29,7 +29,7 @@ describe('My first suite', () => {
 
       cy.wrap(gridForm).find('[for="inputPassword2"]').should('have.text', 'Password');
     })
-  })
+  });
 
   it('Understand the concept of .invoke', () => {
     cy.visit('/');
@@ -204,5 +204,45 @@ describe('My first suite', () => {
         }
       })
     })
-  })
+  });
+
+  it('Tooltips, Dialogs', () => {
+    cy.visit('/');
+    cy.contains('Modal & Overlays').click();
+    cy.contains('Tooltip').click();
+
+    // Cypress do not have special method like hover
+    // And to trigger Tooltip we can use usual click() method
+    // And to analyse the DOM of Tooltip we can use a DOM snapshot from Cypress-chrome
+    cy.get('nb-card').contains('Top').click();
+    cy.get('nb-tooltip').should('contain', 'This is a tooltip');
+  });
+
+  it('Dialog box (alert,prompt,confirm)', () => {
+    cy.visit('/');
+    cy.contains('Tables & Data').click();
+    cy.contains('Smart Table').click();
+
+    //1.
+    // By default, cypress click the 'ok' button on Confirm dialog
+    // And if you want to test 'cancel' button see 3. example
+
+    // cy.get('tbody tr').first().find('.nb-trash').click();
+    // cy.on('window:confirm', str => {
+    //   expect(str).to.equal('Are you sure you want to delete?');
+    // })
+
+    //2. The same meaning as 1. but using stub()
+
+    // const stub = cy.stub();
+    // cy.on('window:confirm', stub);
+    // cy.get('tbody tr').first().find('.nb-trash').click().then(() => {
+    //   expect(stub.getCall(0)).to.be.calledWith('Are you sure you want to delete?');
+    // });
+
+    //3. To test cancel button add 'false' as callback func
+    cy.get('tbody tr').first().find('.nb-trash').click();
+    cy.on('window:confirm', () => false)
+  });
+
 });
