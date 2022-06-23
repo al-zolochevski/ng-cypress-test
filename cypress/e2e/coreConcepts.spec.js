@@ -74,16 +74,32 @@ describe('My first suite', () => {
   });
 
   it('Check that date selected from datepicker is displayed in date input', () => {
+    function selectDayFromCurrent(numberOfDays) {
+      //date returned current date e.g. Thu Jun 23 2022 13:20:04 GMT+0300 (Eastern European Summer Time)
+      let date = new Date();
+      date.setDate(date.getDate() + numberOfDays);
+      let futureDay = date.getDate();
+      let futureMonth = date.toLocaleString('default', {month: 'short'});
+      let dateAssert = futureMonth + ' ' + futureDay + ', ' + date.getFullYear();
+      cy.get('nb-calendar-navigation').invoke('attr', 'ng-reflect-date').then(dateAttributeValue => {
+        if (!dateAttributeValue.includes(futureMonth)) {
+          cy.get('[data-name="chevron-right"]').click()
+          selectDayFromCurrent();
+        } else {
+          cy.get('nb-calendar-day-picker [class="day-cell ng-star-inserted"]').contains(futureDay).click();
+        }
+      });
+      return dateAssert;
+    }
+
     cy.visit('/');
     cy.contains('Forms').click();
     cy.contains('Datepicker').click();
 
-    // And use invoke and call prop function for selected date
-    // And the test is hardcoded
     cy.contains('nb-card', 'Common Datepicker').find('[placeholder="Form Picker"]').then(input => {
       cy.wrap(input).click();
-      cy.get('nb-calendar-day-cell').contains('21').click();
-      cy.wrap(input).invoke('prop', 'value').should('contain', 'Jun 21, 2022')
+      let dateAssert = selectDayFromCurrent(3);
+      cy.wrap(input).invoke('prop', 'value').should('contain', dateAssert)
     })
   });
 
