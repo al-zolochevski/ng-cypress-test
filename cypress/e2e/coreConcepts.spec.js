@@ -31,7 +31,7 @@ describe('My first suite', () => {
     })
   })
 
-  it.only('Understand the concept of .invoke', () => {
+  it('Understand the concept of .invoke', () => {
     cy.visit('/')
     cy.contains('Forms').click()
     cy.contains('Form Layouts').click()

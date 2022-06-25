@@ -1,7 +1,6 @@
-import '../support/page_objects/navigationPage'
 import {navigateTo} from "../support/page_objects/navigationPage"
-import '../support/page_objects/formLayoutsPage'
 import {onFormLayouts} from "../support/page_objects/formLayoutsPage"
+import {onDatepickerPage} from "../support/page_objects/datepickerPage"
 
 describe('Test with Page Objects', () => {
 
@@ -20,5 +19,6 @@ describe('Test with Page Objects', () => {
     // onFormLayouts.submitInlineFormWithNameAndEmail('Alex', 'test@email.com')
     // onFormLayouts.submitBasicFormWithNameAndEmail('alex@test.com', 'qwerty1!')
     navigateTo.datepickerPage()
+    onDatepickerPage.selectCommonDatepickerDateFromToday(1)
   });
 })
