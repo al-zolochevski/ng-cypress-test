@@ -8,15 +8,16 @@ function selectDayFromCurrent(numberOfDays) {
   cy.get('nb-calendar-navigation').invoke('attr', 'ng-reflect-date').then(dateAttributeValue => {
     if (!dateAttributeValue.includes(futureMonth)) {
       cy.get('[data-name="chevron-right"]').click()
-      selectDayFromCurrent()
+      selectDayFromCurrent(numberOfDays)
     } else {
-      cy.get('nb-calendar-day-picker [class="day-cell ng-star-inserted"]').contains(futureDay).click()
+      cy.get('.day-cell').not('.bounding-month').contains(futureDay).click()
     }
   })
   return dateAssert
 }
 
 export class DatepickerPage {
+
   selectCommonDatepickerDateFromToday(dayFromToday) {
     cy.contains('nb-card', 'Common Datepicker').find('[placeholder="Form Picker"]').then(input => {
       cy.wrap(input).click()
@@ -24,6 +25,17 @@ export class DatepickerPage {
       cy.wrap(input).invoke('prop', 'value').should('contain', dateAssert)
     })
   }
+
+  selectDatepickerWithRangeFromToday(firstDay, secondDay) {
+    cy.contains('nb-card', 'Datepicker With Range').find('[placeholder="Range Picker"]').then(input => {
+      cy.wrap(input).click()
+      let dateAssertFirst = selectDayFromCurrent(firstDay)
+      let dateAssertSecond = selectDayFromCurrent(secondDay)
+      const finalDate = dateAssertFirst+' - '+dateAssertSecond
+      cy.wrap(input).invoke('prop', 'value').should('contain', finalDate)
+    })
+  }
+
 }
 
 export const onDatepickerPage = new DatepickerPage()

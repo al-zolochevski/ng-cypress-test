@@ -176,7 +176,7 @@ describe('My first suite', () => {
     cy.contains('Tables & Data').click()
     cy.contains('Smart Table').click()
 
-    //Change the Larry's age to 25
+    //1. Change the Larry's age to 25
     // And use the Table DOM
     cy.get('tbody').contains('tr', 'Larry').then(tableRow => {
       cy.wrap(tableRow).find('i.nb-edit').click()
@@ -185,8 +185,8 @@ describe('My first suite', () => {
       cy.wrap(tableRow).find('td').eq(6).should('contain', '25')
     })
 
+    //2.
     cy.get('tr').find('a .nb-plus').click()
-    //
     cy.get('thead').find('tr').eq(2).then(theadRow => {
       cy.wrap(theadRow).find('input-editor').eq(1).type('Aleksei')
       cy.wrap(theadRow).find('input-editor').eq(2).type('Zolochevskyi')
@@ -197,6 +197,8 @@ describe('My first suite', () => {
       cy.wrap(firstRow).find('td').eq(2).should('have.text', 'Aleksei')
       cy.wrap(firstRow).find('td').eq(3).should('have.text', 'Zolochevskyi')
     })
+
+    // 3.
     const age = [20, 30, 40, 200]
     cy.wrap(age).each(age => {
       cy.get('thead').find('[placeholder="Age"]').clear().type(age)
