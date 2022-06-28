@@ -26,5 +26,5 @@
 
 
 Cypress.Commands.add('openHomePage', () => {
-  cy.visit('/')
+  cy.visit('/');
 })
