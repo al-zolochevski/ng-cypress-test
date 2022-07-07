@@ -16,12 +16,12 @@ describe('Test with Page Objects', () => {
   });
 
   it.only('should submit inline and basic form and select tomorrow date in the calendar', () => {
-    // navigateTo.formLayoutPage()
-    // onFormLayouts.submitInlineFormWithNameAndEmail('Alex', 'test@email.com')
-    // onFormLayouts.submitBasicFormWithNameAndEmail('alex@test.com', 'qwerty1!')
-    // navigateTo.datepickerPage()
-    // onDatepickerPage.selectCommonDatepickerDateFromToday(1)
-    // onDatepickerPage.selectDatepickerWithRangeFromToday(1, 12)
+    navigateTo.formLayoutPage()
+    onFormLayouts.submitInlineFormWithNameAndEmail('Alex', 'test@email.com')
+    onFormLayouts.submitBasicFormWithNameAndEmail('alex@test.com', 'qwerty1!')
+    navigateTo.datepickerPage()
+    onDatepickerPage.selectCommonDatepickerDateFromToday(1)
+    onDatepickerPage.selectDatepickerWithRangeFromToday(1, 12)
 
     navigateTo.smartTablePage()
     onSmartTable.addNewRecordWithFirstAndLastName('Aleksei', 'Zolochevski')
