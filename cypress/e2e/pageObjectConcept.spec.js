@@ -15,7 +15,7 @@ describe('Test with Page Objects', () => {
     navigateTo.datepickerPage()
   });
 
-  it.only('should submit inline and basic form and select tomorrow date in the calendar', () => {
+  it('should submit inline and basic form and select tomorrow date in the calendar', () => {
     navigateTo.formLayoutPage()
     onFormLayouts.submitInlineFormWithNameAndEmail('Alex', 'test@email.com')
     onFormLayouts.submitBasicFormWithNameAndEmail('alex@test.com', 'qwerty1!')
