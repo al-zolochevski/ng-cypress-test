@@ -1,44 +1,44 @@
 export class StepperPage {
 
   //Big Horizontal Stepper
-  checkStepLabelTextForBigStepper(stepText) {
-    cy.get('nb-card [orientation="horizontal"] .step').contains(stepText)
+  checkStepLabelTextForStepper(stepperAttr, stepText) {
+    cy.get(`${stepperAttr} .step`).contains(stepText)
   }
 
-  checkStepNumberValueForBigStepper(stepNumber) {
-    cy.get('nb-card [orientation="horizontal"] .step').contains(stepNumber)
+  checkStepNumberValueForStepper(stepperAttr, stepNumber) {
+    cy.get(`${stepperAttr} .step`).contains(stepNumber)
   }
 
-  goToTheNextStepForBigStepper() {
-    cy.get('nb-card').find('[orientation="horizontal"]').contains('next').click()
+  goToTheNextStepForStepper(stepperAttr) {
+    cy.get(`${stepperAttr}`).contains('next').click()
   }
 
-  goToThePreviousStepForBigStepper() {
-    cy.get('nb-card').find('[orientation="horizontal"]').contains('prev').click()
+  goToThePreviousStepForStepper(stepperAttr) {
+    cy.get(`${stepperAttr}`).contains('prev').click()
   }
 
-  checkTheNextButtonIsDisabledForBigStepper() {
-    cy.get('nb-card').find('[orientation="horizontal"]')
-      .contains('next').should('have.attr', 'aria-disabled', 'true')
-  }
-
-  checkThePrevButtonIsDisabledForBigStepper() {
-    cy.get('nb-card').find('[orientation="horizontal"]')
+  checkThePrevButtonIsDisabledForStepper(stepperAttr) {
+    cy.get(`${stepperAttr}`)
       .contains('prev').should('have.attr', 'aria-disabled', 'true')
   }
 
-  checkTheNextButtonIsEnabledForBigStepper() {
-    cy.get('nb-card').find('[orientation="horizontal"]')
-      .contains('next').should('have.attr', 'aria-disabled', 'false')
-  }
-
-  checkThePrevButtonIsEnabledForBigStepper() {
-    cy.get('nb-card').find('[orientation="horizontal"]')
+  checkThePrevButtonIsEnabledForStepper(stepperAttr) {
+    cy.get(`${stepperAttr}`)
       .contains('prev').should('have.attr', 'aria-disabled', 'false')
   }
 
-  checkStepCompletedStateForBigStepper(stepIndex) {
-    cy.get('nb-card [orientation="horizontal"] .step').each((step, ArrIndex) => {
+  checkTheNextButtonIsDisabledForStepper(stepperAttr) {
+    cy.get(`${stepperAttr}`)
+      .contains('next').should('have.attr', 'aria-disabled', 'true')
+  }
+
+  checkTheNextButtonIsEnabledForStepper(stepperAttr) {
+    cy.get(`${stepperAttr}`)
+      .contains('next').should('have.attr', 'aria-disabled', 'false')
+  }
+
+  checkStepCompletedStateForStepper(stepperAttr, stepIndex) {
+    cy.get(`${stepperAttr} .step`).each((step, ArrIndex) => {
       if (ArrIndex === stepIndex) {
         expect(step).to.have.class('completed')
       }
@@ -110,50 +110,6 @@ export class StepperPage {
     cy.get('[cy="medium-horizontal-stepper"] .step-content').contains(tryAgain).click()
   }
 
-  //Medium Vertical Stepper
-  checkStepLabelTextForMediumVerticalStepper(stepText) {
-    cy.get('[cy="medium-vertical-stepper"] .step').contains(stepText)
-  }
-
-  checkStepNumberValueForMediumVerticalStepper(stepNumber) {
-    cy.get('[cy="medium-vertical-stepper"] .step').contains(stepNumber)
-  }
-
-  goToTheNextStepForMediumVerticalStepper() {
-    cy.get('[cy="medium-vertical-stepper"]').contains('next').click()
-  }
-
-  goToThePreviousStepForMediumVerticalStepper() {
-    cy.get('[cy="medium-vertical-stepper"]').contains('prev').click()
-  }
-
-  checkTheNextButtonIsDisabledForMediumVerticalStepper() {
-    cy.get('[cy="medium-vertical-stepper"]')
-      .contains('next').should('have.attr', 'aria-disabled', 'true')
-  }
-
-  checkThePrevButtonIsDisabledForMediumVerticalStepper() {
-    cy.get('[cy="medium-vertical-stepper"]')
-      .contains('prev').should('have.attr', 'aria-disabled', 'true')
-  }
-
-  checkTheNextButtonIsEnabledForMediumVerticalStepper() {
-    cy.get('[cy="medium-vertical-stepper"]')
-      .contains('next').should('have.attr', 'aria-disabled', 'false')
-  }
-
-  checkThePrevButtonIsEnabledForMediumVerticalStepper() {
-    cy.get('[cy="medium-vertical-stepper"]')
-      .contains('prev').should('have.attr', 'aria-disabled', 'false')
-  }
-
-  checkStepCompletedStateForMediumVerticalStepper(stepIndex) {
-    cy.get('[cy="medium-vertical-stepper"] .step').each((step, ArrIndex) => {
-      if (ArrIndex === stepIndex) {
-        expect(step).to.have.class('completed')
-      }
-    })
-  }
 }
 
 export const onStepperPage = new StepperPage()

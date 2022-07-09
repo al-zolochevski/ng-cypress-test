@@ -9,39 +9,76 @@ describe('Stepper page tests', () => {
   })
 
   it('Check that User can go through Big horizontal stepper', () => {
-    onStepperPage.checkThePrevButtonIsDisabledForBigStepper()
-    onStepperPage.checkStepLabelTextForBigStepper('First step')
-    onStepperPage.checkStepNumberValueForBigStepper('1')
-    onStepperPage.goToTheNextStepForBigStepper()
-    onStepperPage.checkStepCompletedStateForBigStepper(0)
+    onStepperPage.checkThePrevButtonIsDisabledForStepper('[cy="big-horizontal-stepper"]')
+    onStepperPage.checkStepLabelTextForStepper('[cy="big-horizontal-stepper"]', 'First step')
+    onStepperPage.checkStepNumberValueForStepper('[cy="big-horizontal-stepper"]', '1')
+    onStepperPage.goToTheNextStepForStepper('[cy="big-horizontal-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="big-horizontal-stepper"]', 0)
+    onStepperPage.checkThePrevButtonIsEnabledForStepper('[cy="big-horizontal-stepper"]')
 
-    onStepperPage.checkStepLabelTextForBigStepper('Second step')
-    onStepperPage.checkStepNumberValueForBigStepper('2')
-    onStepperPage.goToTheNextStepForBigStepper()
-    onStepperPage.checkStepCompletedStateForBigStepper(1)
+    onStepperPage.checkStepLabelTextForStepper('[cy="big-horizontal-stepper"]', 'Second step')
+    onStepperPage.checkStepNumberValueForStepper('[cy="big-horizontal-stepper"]', '2')
+    onStepperPage.goToTheNextStepForStepper('[cy="big-horizontal-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="big-horizontal-stepper"]', 1)
 
-    onStepperPage.checkStepLabelTextForBigStepper('Third step')
-    onStepperPage.checkStepNumberValueForBigStepper('3')
-    onStepperPage.goToTheNextStepForBigStepper()
-    onStepperPage.checkStepCompletedStateForBigStepper(2)
+    onStepperPage.checkStepLabelTextForStepper('[cy="big-horizontal-stepper"]', 'Third step')
+    onStepperPage.checkStepNumberValueForStepper('[cy="big-horizontal-stepper"]', '3')
+    onStepperPage.goToTheNextStepForStepper('[cy="big-horizontal-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="big-horizontal-stepper"]', 2)
 
-    onStepperPage.checkStepLabelTextForBigStepper('Fourth step')
-    onStepperPage.checkStepNumberValueForBigStepper('4')
-    onStepperPage.checkTheNextButtonIsDisabledForBigStepper()
+    onStepperPage.checkStepLabelTextForStepper('[cy="big-horizontal-stepper"]', 'Fourth step')
+    onStepperPage.checkStepNumberValueForStepper('[cy="big-horizontal-stepper"]', '4')
+    onStepperPage.checkTheNextButtonIsDisabledForStepper('[cy="big-horizontal-stepper"]')
 
-    onStepperPage.goToThePreviousStepForBigStepper()
-    onStepperPage.checkTheNextButtonIsEnabledForBigStepper()
-    onStepperPage.checkStepCompletedStateForBigStepper(3)
-    onStepperPage.checkStepNumberValueForBigStepper('3')
+    onStepperPage.goToThePreviousStepForStepper('[cy="big-horizontal-stepper"]')
+    onStepperPage.checkTheNextButtonIsEnabledForStepper('[cy="big-horizontal-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="big-horizontal-stepper"]', 3)
+    onStepperPage.checkStepNumberValueForStepper('[cy="big-horizontal-stepper"]', '3')
 
-    onStepperPage.goToThePreviousStepForBigStepper()
-    onStepperPage.checkStepCompletedStateForBigStepper(2)
-    onStepperPage.checkStepNumberValueForBigStepper('2')
+    onStepperPage.goToThePreviousStepForStepper('[cy="big-horizontal-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="big-horizontal-stepper"]', 2)
+    onStepperPage.checkStepNumberValueForStepper('[cy="big-horizontal-stepper"]', '2')
 
-    onStepperPage.goToThePreviousStepForBigStepper()
-    onStepperPage.checkStepCompletedStateForBigStepper(1)
-    onStepperPage.checkStepNumberValueForBigStepper('1')
-    onStepperPage.checkThePrevButtonIsDisabledForBigStepper()
+    onStepperPage.goToThePreviousStepForStepper('[cy="big-horizontal-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="big-horizontal-stepper"]', 1)
+    onStepperPage.checkStepNumberValueForStepper('[cy="big-horizontal-stepper"]', '1')
+    onStepperPage.checkThePrevButtonIsDisabledForStepper('[cy="big-horizontal-stepper"]')
+  });
+
+  it('Check that User can go through Medium vertical stepper', () => {
+    onStepperPage.checkThePrevButtonIsDisabledForStepper('[cy="medium-vertical-stepper"]')
+    onStepperPage.checkStepLabelTextForStepper('[cy="medium-vertical-stepper"]', 'First step')
+    onStepperPage.checkStepNumberValueForStepper('[cy="medium-vertical-stepper"]', '1')
+    onStepperPage.goToTheNextStepForStepper('[cy="medium-vertical-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="medium-vertical-stepper"]', 0)
+
+    onStepperPage.checkStepLabelTextForStepper('[cy="medium-vertical-stepper"]', 'Second step')
+    onStepperPage.checkStepNumberValueForStepper('[cy="medium-vertical-stepper"]', '2')
+    onStepperPage.goToTheNextStepForStepper('[cy="medium-vertical-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="medium-vertical-stepper"]', 1)
+
+    onStepperPage.checkStepLabelTextForStepper('[cy="medium-vertical-stepper"]', 'Third step')
+    onStepperPage.checkStepNumberValueForStepper('[cy="medium-vertical-stepper"]', '3')
+    onStepperPage.goToTheNextStepForStepper('[cy="medium-vertical-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="medium-vertical-stepper"]', 2)
+
+    onStepperPage.checkStepLabelTextForStepper('[cy="medium-vertical-stepper"]', 'Fourth step')
+    onStepperPage.checkStepNumberValueForStepper('[cy="medium-vertical-stepper"]', '4')
+    onStepperPage.checkTheNextButtonIsDisabledForStepper('[cy="medium-vertical-stepper"]')
+
+    onStepperPage.goToThePreviousStepForStepper('[cy="medium-vertical-stepper"]')
+    onStepperPage.checkTheNextButtonIsEnabledForStepper('[cy="medium-vertical-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="medium-vertical-stepper"]', 3)
+    onStepperPage.checkStepNumberValueForStepper('[cy="medium-vertical-stepper"]', '3')
+
+    onStepperPage.goToThePreviousStepForStepper('[cy="medium-vertical-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="medium-vertical-stepper"]', 2)
+    onStepperPage.checkStepNumberValueForStepper('[cy="medium-vertical-stepper"]', '2')
+
+    onStepperPage.goToThePreviousStepForStepper('[cy="medium-vertical-stepper"]')
+    onStepperPage.checkStepCompletedStateForStepper('[cy="medium-vertical-stepper"]', 1)
+    onStepperPage.checkStepNumberValueForStepper('[cy="medium-vertical-stepper"]', '1')
+    onStepperPage.checkThePrevButtonIsDisabledForStepper('[cy="medium-vertical-stepper"]')
   });
 
   it('Check that User can go through Medium horizontal stepper', () => {
@@ -68,39 +105,5 @@ describe('Stepper page tests', () => {
     onStepperPage.checkTheNextButtonIsEnabledForMediumHorizontalStepper()
   });
 
-  it('Check that User can go through Medium vertical stepper', () => {
-    onStepperPage.checkThePrevButtonIsDisabledForMediumVerticalStepper()
-    onStepperPage.checkStepLabelTextForMediumVerticalStepper('First step')
-    onStepperPage.checkStepNumberValueForMediumVerticalStepper('1')
-    onStepperPage.goToTheNextStepForMediumVerticalStepper()
-    onStepperPage.checkStepCompletedStateForMediumVerticalStepper(0)
 
-    onStepperPage.checkStepLabelTextForMediumVerticalStepper('Second step')
-    onStepperPage.checkStepNumberValueForMediumVerticalStepper('2')
-    onStepperPage.goToTheNextStepForMediumVerticalStepper()
-    onStepperPage.checkStepCompletedStateForMediumVerticalStepper(1)
-
-    onStepperPage.checkStepLabelTextForMediumVerticalStepper('Third step')
-    onStepperPage.checkStepNumberValueForMediumVerticalStepper('3')
-    onStepperPage.goToTheNextStepForMediumVerticalStepper()
-    onStepperPage.checkStepCompletedStateForMediumVerticalStepper(2)
-
-    onStepperPage.checkStepLabelTextForMediumVerticalStepper('Fourth step')
-    onStepperPage.checkStepNumberValueForMediumVerticalStepper('4')
-    onStepperPage.checkTheNextButtonIsDisabledForMediumVerticalStepper()
-
-    onStepperPage.goToThePreviousStepForMediumVerticalStepper()
-    onStepperPage.checkTheNextButtonIsEnabledForMediumVerticalStepper()
-    onStepperPage.checkStepCompletedStateForMediumVerticalStepper(3)
-    onStepperPage.checkStepNumberValueForMediumVerticalStepper('3')
-
-    onStepperPage.goToThePreviousStepForMediumVerticalStepper()
-    onStepperPage.checkStepCompletedStateForMediumVerticalStepper(2)
-    onStepperPage.checkStepNumberValueForMediumVerticalStepper('2')
-
-    onStepperPage.goToThePreviousStepForMediumVerticalStepper()
-    onStepperPage.checkStepCompletedStateForMediumVerticalStepper(1)
-    onStepperPage.checkStepNumberValueForMediumVerticalStepper('1')
-    onStepperPage.checkThePrevButtonIsDisabledForMediumVerticalStepper()
-  });
 })
