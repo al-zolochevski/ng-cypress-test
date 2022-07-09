@@ -3,7 +3,7 @@
 #### 🎯 Cypress API
 #### 🎯 PageObject
 #### 🎯 e2e
-
+* use Node v14.18.1 to run this app in local 
 
 
 #### Ngx-Admin Angular 8 application from akveo.com
