@@ -108,8 +108,8 @@ export class StepperPage {
   checkThatUserCanPassAgainForMediumHorizontalSteppe(completedText, tryAgain) {
     cy.get('[cy="medium-horizontal-stepper"] .step-content').contains(completedText)
     cy.get('[cy="medium-horizontal-stepper"] .step-content').contains(tryAgain).click()
-  }
 
+  }
 }
 
 export const onStepperPage = new StepperPage()
