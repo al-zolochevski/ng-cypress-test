@@ -25,7 +25,7 @@
     "prepush": "npm run lint:ci",
     "release:changelog": "npm run conventional-changelog -- -p angular -i CHANGELOG.md -s",
     "cy:run_spec": "npx cypress run --spec 'cypress/e2e/*'",
-    "cy:run_spec_chrome_and_firefox": "npm run cy:run_spec -- --browser firefox & npm run cy:run_spec -- --browser chrome",
+    "cy:run_spec_chrome_and_edge": "npm run cy:run_spec -- --browser edge & npm run cy:run_spec -- --browser chrome",
     "cy:dashboard": "npx cypress run --record --key 79767172-8cf2-4bb6-87b4-9eddda8bae2d"
   },
   "dependencies": {
@@ -93,6 +93,7 @@
     "codelyzer": "^5.0.1",
     "conventional-changelog-cli": "^2.1.1",
     "cypress": "^10.1.0",
+    "cypress-xpath": "^2.0.0",
     "husky": "0.13.3",
     "jasmine-core": "2.6.4",
     "jasmine-spec-reporter": "4.1.1",
