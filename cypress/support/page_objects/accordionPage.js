@@ -2,20 +2,21 @@
 
 export class AccordionPage {
   checkThatFirstAccordionItemIsToggleByButton(itemText) {
-    cy.xpath('//*[normalize-space(text()) = \'Toggle First Item\']').click()
-    cy.xpath('//nb-accordion/nb-accordion-item[@class="expanded"]').should('contain.text', itemText)
+    cy.xpath('//*[normalize-space(text())="Toggle First Item"]').click()
+    cy.xpath('//nb-accordion[@cy="accordion"]/nb-accordion-item[@class="expanded"]').should('contain.text', itemText)
+    cy.xpath('//*[normalize-space(text())="Toggle First Item"]').click()
+    cy.xpath('//nb-accordion[@cy="accordion"]/nb-accordion-item[@class="collapsed"]').first().should('not.have.text', itemText)
   }
 
-  toggleOnAccordionItem(ItemHeader, ItemText) {
-
-  }
-
-  toggleOffAccordionItem(ItemHeader, ItemText) {
-
+  checkAccordionItemText(ItemHeader, ItemText) {
+    cy.xpath('//nb-accordion[@cy="accordion"]/nb-accordion-item/nb-accordion-item-header' + '[contains(text(), \'' + ItemHeader + '\')]').click()
+    cy.xpath('//nb-accordion[@cy="accordion"]/nb-accordion-item[@class="expanded"]').should('contain.text', ItemText)
   }
 
   checkThatAllItemsIsCollapsedByDefault() {
-
+    cy.xpath('//nb-accordion[@cy="accordion"]/nb-accordion-item').each((elem) => {
+      expect(elem).has.class('collapsed')
+    })
   }
 }
 
