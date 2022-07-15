@@ -1,5 +1,5 @@
 describe('visual testing suite', () => {
-  it('visual test of Basic form with cypress-plugin-snapshots\n', () => {
+  it('visual test of Basic form with cypress-plugin-snapshots', () => {
     cy.visit('/')
     cy.contains('Forms').click()
     cy.contains('Form Layouts').click()
