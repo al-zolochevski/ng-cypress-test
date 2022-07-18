@@ -9,15 +9,32 @@ describe('Testing of dialog types', () => {
     navigateTo.dialogPage()
   })
 
-  it('Test of Open Dialog with Component', () => {
-    onDialogPage.checkTheShowingDialog('Open Dialog with component',
-      dialogs.dialogComponentHead, dialogs.dialogComponentBody)
-    onDialogPage.dismissTheDialog()
-  });
+  it('Test of Open Dialog with Component Dialog', () => {
+    onDialogPage.checkTheShowingDialog('Open Dialog', 'Open Dialog with component')
+    onDialogPage.checkTheDialogContent(dialogs.dialogComponentHead, dialogs.dialogComponentBody)
+    onDialogPage.closeDialog('Dismiss Dialog')
+    onDialogPage.checkClosingWithBackdropClick('Open Dialog', 'Open Dialog with component')
+  })
 
-  it.only('Test of Open Dialog with Template', () => {
-    onDialogPage.checkTheShowingDialog('Open Dialog with template',
-      dialogs.dialogTemplateHead, dialogs.dialogTemplateBody)
-    onDialogPage.checkClosingOutsideDialog()
+  it('Test of Dialog with Template', () => {
+    onDialogPage.checkTheShowingDialog('Open Dialog', 'Open Dialog with template')
+    onDialogPage.checkTheDialogContent(dialogs.dialogTemplateHead, dialogs.dialogTemplateBody)
+    onDialogPage.closeDialog('Close Dialog')
+    onDialogPage.checkClosingWithBackdropClick('Open Dialog', 'Open Dialog with template')
+  })
+
+  it('Test of Without Backdrop Dialog', () => {
+    onDialogPage.checkTheShowingDialog('Open Without Backdrop', 'Open Dialog without backdrop')
+    onDialogPage.checkTheDialogContent(dialogs.dialogTemplateHead, dialogs.dialogTemplateBody)
+    onDialogPage.closeDialog('Close Dialog')
+    onDialogPage.checkClosingWithDisabledBackdropClick('Open Without Backdrop', 'Open Dialog without backdrop')
+    onDialogPage.closeDialog('Close Dialog')
+  })
+
+  it('Test of Dialog with Esc Close', () => {
+    onDialogPage.checkTheShowingDialog('Open Without Esc Close', 'Open Dialog with esc close')
+    onDialogPage.checkTheDialogContent(dialogs.dialogComponentHead, dialogs.dialogComponentBody)
+    onDialogPage.closeDialog('Dismiss Dialog')
+    onDialogPage.checkClosingWithEscKeypress('Open Without Esc Close', 'Open Dialog with esc close')
   });
 })
