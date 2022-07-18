@@ -47,58 +47,58 @@ export class StepperPage {
 
   //Medium Horizontal Stepper
   checkStepLabelTextForMediumHorizontalStepper(stepText) {
-    cy.get('[cy="medium-horizontal-stepper"]').contains(stepText)
+    cy.get('[data-cy="medium-horizontal-stepper"]').contains(stepText)
   }
 
   checkTheNextButtonIsDisabledForMediumHorizontalStepper() {
-    cy.get('[cy="medium-horizontal-stepper"]')
+    cy.get('[data-cy="medium-horizontal-stepper"]')
       .contains('next').should('have.attr', 'aria-disabled', 'true')
   }
 
   checkTheNextButtonIsEnabledForMediumHorizontalStepper() {
-    cy.get('[cy="medium-horizontal-stepper"]')
+    cy.get('[data-cy="medium-horizontal-stepper"]')
       .contains('next').should('have.attr', 'aria-disabled', 'false')
   }
 
   checkThePrevButtonIsNotDisplayedForMediumHorizontalStepper() {
-    cy.get('[cy="medium-horizontal-stepper"] button').contains('prev').should('not.exist');
+    cy.get('[data-cy="medium-horizontal-stepper"] button').contains('prev').should('not.exist');
   }
 
   goToTheNextStepForMediumHorizontalStepper() {
-    cy.get('[cy="medium-horizontal-stepper"]').contains('next').click()
+    cy.get('[data-cy="medium-horizontal-stepper"]').contains('next').click()
   }
 
   confirmAllTypedDataForMediumHorizontalStepper() {
-    cy.get('[cy="medium-horizontal-stepper"]').contains('Confirm').click()
+    cy.get('[data-cy="medium-horizontal-stepper"]').contains('Confirm').click()
   }
 
   checkStepNumberValueForMediumHorizontalStepper(stepNumber) {
-    cy.get('[cy="medium-horizontal-stepper"]').contains(stepNumber)
+    cy.get('[data-cy="medium-horizontal-stepper"]').contains(stepNumber)
   }
 
   typeFirstNameForMediumHorizontalStepper(firstName) {
-    cy.get('[cy="medium-horizontal-stepper"] [placeholder="Enter your name"]').type(firstName)
+    cy.get('[data-cy="medium-horizontal-stepper"] [placeholder="Enter your name"]').type(firstName)
       .invoke('prop', 'value').then(value => {
       expect(value).to.contain(firstName)
     })
   }
 
   typeFavouriteMovieForMediumHorizontalStepper(favouriteMovie) {
-    cy.get('[cy="medium-horizontal-stepper"] [placeholder="Enter favorite movie"]').type(favouriteMovie)
+    cy.get('[data-cy="medium-horizontal-stepper"] [placeholder="Enter favorite movie"]').type(favouriteMovie)
       .invoke('prop', 'value').then(value => {
       expect(value).to.contain(favouriteMovie)
     })
   }
 
   typeTextForMediumHorizontalStepper(someText) {
-    cy.get('[cy="medium-horizontal-stepper"] [placeholder="Enter something"]').type(someText)
+    cy.get('[data-cy="medium-horizontal-stepper"] [placeholder="Enter something"]').type(someText)
       .invoke('prop', 'value').then(value => {
       expect(value).to.contain(someText)
     })
   }
 
   checkStepCompletedStateForMediumHorizontalStepper(stepIndex) {
-    cy.get('[cy="medium-horizontal-stepper"] .step').each((step, ArrIndex) => {
+    cy.get('[data-cy="medium-horizontal-stepper"] .step').each((step, ArrIndex) => {
       if (ArrIndex === stepIndex) {
         expect(step).to.have.class('completed')
       }
@@ -106,8 +106,8 @@ export class StepperPage {
   }
 
   checkThatUserCanPassAgainForMediumHorizontalSteppe(completedText, tryAgain) {
-    cy.get('[cy="medium-horizontal-stepper"] .step-content').contains(completedText)
-    cy.get('[cy="medium-horizontal-stepper"] .step-content').contains(tryAgain).click()
+    cy.get('[data-cy="medium-horizontal-stepper"] .step-content').contains(completedText)
+    cy.get('[data-cy="medium-horizontal-stepper"] .step-content').contains(tryAgain).click()
 
   }
 }
