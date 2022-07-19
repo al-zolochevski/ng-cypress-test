@@ -11,6 +11,11 @@ export class DialogPage {
       .should('contain.text', dialogBodyText)
   }
 
+  checkTheDialogFormContent(dialogHeaderText) {
+    cy.get('nb-card-header').contains(dialogHeaderText)
+    cy.get('input').should('contain.html','placeholder="Name"')
+  }
+
   checkClosingWithBackdropClick(dialogGroupTitle, dialogTypeBtnText) {
     cy.contains(dialogGroupTitle).parent().contains(dialogTypeBtnText).click()
     cy.get('body').click(2, 2)

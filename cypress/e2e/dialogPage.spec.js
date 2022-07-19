@@ -37,4 +37,20 @@ describe('Testing of dialog types', () => {
     onDialogPage.closeDialog('Dismiss Dialog')
     onDialogPage.checkClosingWithEscKeypress('Open Without Esc Close', 'Open Dialog with esc close')
   });
+
+  it('Test of Dialog with disabled Esc Close', () => {
+    onDialogPage.checkTheShowingDialog('Open Without Esc Close', 'Open Dialog without esc close')
+    onDialogPage.checkTheDialogContent(dialogs.dialogTemplateHead, dialogs.dialogTemplateBody)
+    onDialogPage.closeDialog('Close Dialog')
+    onDialogPage.checkClosingWithDisabledEscKeypress('Open Without Esc Close', 'Open Dialog without esc close')
+    onDialogPage.closeDialog('Close Dialog')
+  })
+
+  it('Test of Dialog with disabled Esc Close', () => {
+    onDialogPage.checkTheShowingDialog('Return Result From Dialog', 'Enter Name')
+    onDialogPage.checkTheDialogFormContent(dialogs.dialogFormHeader)
+    onDialogPage.closeDialog('Cancel')
+    onDialogPage.checkTheShowingDialog('Return Result From Dialog', 'Enter Name')
+    onDialogPage.checkClosingWithDisabledEscKeypress('Open Without Esc Close', 'Open Dialog without esc close')
+  })
 })
