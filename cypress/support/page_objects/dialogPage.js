@@ -1,5 +1,3 @@
-import dialogs from "../../fixtures/dialogs.json";
-
 export class DialogPage {
 
   //Dialog: Open Dialog
