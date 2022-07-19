@@ -46,11 +46,13 @@ describe('Testing of dialog types', () => {
     onDialogPage.closeDialog('Close Dialog')
   })
 
-  it('Test of Dialog with disabled Esc Close', () => {
+  it('Test of Dialog with Form Dialog', () => {
     onDialogPage.checkTheShowingDialog('Return Result From Dialog', 'Enter Name')
     onDialogPage.checkTheDialogFormContent(dialogs.dialogFormHeader)
     onDialogPage.closeDialog('Cancel')
-    onDialogPage.checkTheShowingDialog('Return Result From Dialog', 'Enter Name')
-    onDialogPage.checkClosingWithDisabledEscKeypress('Open Without Esc Close', 'Open Dialog without esc close')
+    onDialogPage.fillDialogForm('Alex')
+    onDialogPage.fillDialogForm('Sara')
+    onDialogPage.fillDialogForm('Mark')
   })
+
 })
