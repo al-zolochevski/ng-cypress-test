@@ -1,6 +1,5 @@
 export class DialogPage {
 
-  //Dialog: Open Dialog
   checkTheShowingDialog(dialogGroupTitle, dialogTypeBtnText) {
     cy.contains(dialogGroupTitle).parent().contains(dialogTypeBtnText).click()
     cy.get('nb-dialog-container').should('exist')
